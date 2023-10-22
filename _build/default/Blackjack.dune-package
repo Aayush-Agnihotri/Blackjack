@@ -1,4 +1,0 @@
-(lang dune 3.10)
-(name Blackjack)
-(sections (lib .) (bin ../../bin) (doc ../../doc/Blackjack))
-(files (lib (META dune-package opam)) (bin (Blackjack)) (doc (README.md)))
