@@ -31,65 +31,57 @@ module SpotCard : Card = struct
   let create d = { number = d.number; suit = d.suit }
 
   let print_card_template n symbol =
+    print_endline " _____ ";
     match n with
     | "2" ->
-        print_endline " _____ ";
         print_endline ("|" ^ n ^ "    |");
         print_endline ("|  " ^ symbol ^ "  |");
         print_endline "|     |";
         print_endline ("|  " ^ symbol ^ "  |");
         print_endline "|____Z|"
     | "3" ->
-        print_endline " _____ ";
         print_endline ("|" ^ n ^ "    |");
         print_endline ("| " ^ symbol ^ " " ^ symbol ^ " |");
         print_endline "|     |";
         print_endline ("|  " ^ symbol ^ "  |");
         print_endline "|____e|"
     | "4" ->
-        print_endline " _____ ";
         print_endline ("|" ^ n ^ "    |");
         print_endline ("| " ^ symbol ^ " " ^ symbol ^ " |");
         print_endline "|     |";
         print_endline ("| " ^ symbol ^ " " ^ symbol ^ " |");
         print_endline "|____h|"
     | "5" ->
-        print_endline " _____ ";
         print_endline ("|" ^ n ^ "    |");
         print_endline ("| " ^ symbol ^ " " ^ symbol ^ " |");
         print_endline ("|  " ^ symbol ^ "  |");
         print_endline ("| " ^ symbol ^ " " ^ symbol ^ " |");
         print_endline "|____S|"
     | "6" ->
-        print_endline " _____ ";
         print_endline ("|" ^ n ^ "    |");
         print_endline ("| " ^ symbol ^ " " ^ symbol ^ " |");
         print_endline ("| " ^ symbol ^ " " ^ symbol ^ " |");
         print_endline ("| " ^ symbol ^ " " ^ symbol ^ " |");
         print_endline "|____9|"
     | "7" ->
-        print_endline " _____ ";
         print_endline ("|" ^ n ^ "    |");
         print_endline ("| " ^ symbol ^ " " ^ symbol ^ " |");
         print_endline ("|" ^ symbol ^ " " ^ symbol ^ " " ^ symbol ^ "|");
         print_endline ("| " ^ symbol ^ " " ^ symbol ^ " |");
         print_endline "|____L|"
     | "8" ->
-        print_endline " _____ ";
         print_endline ("|" ^ n ^ "    |");
         print_endline ("|" ^ symbol ^ " " ^ symbol ^ " " ^ symbol ^ "|");
         print_endline ("| " ^ symbol ^ " " ^ symbol ^ " |");
         print_endline ("|" ^ symbol ^ " " ^ symbol ^ " " ^ symbol ^ "|");
         print_endline "|____8|"
     | "9" ->
-        print_endline " _____ ";
         print_endline ("|" ^ n ^ "    |");
         print_endline ("|" ^ symbol ^ " " ^ symbol ^ " " ^ symbol ^ "|");
         print_endline ("|" ^ symbol ^ " " ^ symbol ^ " " ^ symbol ^ "|");
         print_endline ("|" ^ symbol ^ " " ^ symbol ^ " " ^ symbol ^ "|");
         print_endline "|____6|"
     | "10" ->
-        print_endline " _____ ";
         print_endline ("|" ^ n ^ " " ^ symbol ^ " |");
         print_endline ("|" ^ symbol ^ " " ^ symbol ^ " " ^ symbol ^ "|");
         print_endline ("|" ^ symbol ^ " " ^ symbol ^ " " ^ symbol ^ "|");
