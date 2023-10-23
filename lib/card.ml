@@ -120,9 +120,27 @@ module FaceCard : Card = struct
 
   let print_card_template (f : face) (s : suit) =
     match f with
-    | Jack -> print_endline ""
-    | Queen -> print_endline ""
-    | King -> print_endline ""
+    | Jack ->
+        print_endline " _____ ";
+        print_endline "|J  ww|";
+        (match s with
+        | Clubs ->
+            print_endline "| o {)|";
+            print_endline "|o o% |";
+            print_endline "| | % |"
+        | Diamonds ->
+            print_endline "| /\\{)|";
+            print_endline "| \\/% |";
+            print_endline "|   % |"
+        | Hearts ->
+            print_endline "|   {)|";
+            print_endline "|(v)% |";
+            print_endline "| v % |"
+        | Spades ->
+            print_endline "| ^ {)|";
+            print_endline "|(.)% |";
+            print_endline "| | % |");
+        print_endline "|__%%[|"
     | Ace ->
         (match s with
         | Clubs ->
@@ -150,6 +168,27 @@ module FaceCard : Card = struct
             print_endline "|(_._)|";
             print_endline "|  |  |");
         print_endline "|____V|"
+    | _ ->
+        print_endline " _____ ";
+        if f = Queen then print_endline "|Q  ww|" else print_endline "|K  WW|";
+        (match s with
+        | Clubs ->
+            print_endline "| o {(|";
+            print_endline "|o o%%|";
+            print_endline "| |%%%|"
+        | Diamonds ->
+            print_endline "| /\\{(|";
+            print_endline "| \\/%%|";
+            print_endline "|  %%%|"
+        | Hearts ->
+            print_endline "|   {(|";
+            print_endline "|(v)%%|";
+            print_endline "| v%%%|"
+        | Spades ->
+            print_endline "| ^ {(|";
+            print_endline "|(.)%%|";
+            print_endline "| |%%%|");
+        if f = Queen then print_endline "|_%%%O|" else print_endline "|_%%%>|"
 
   let print card =
     match card with
