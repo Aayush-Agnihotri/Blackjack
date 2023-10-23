@@ -139,9 +139,9 @@ module FaceCard : Card = struct
     | { suit; _ } -> suit
 
   let print_card_template (f : face) (s : suit) =
+    print_endline " _____ ";
     match f with
     | Jack ->
-        print_endline " _____ ";
         print_endline "|J  ww|";
         (match s with
         | Clubs ->
@@ -164,32 +164,27 @@ module FaceCard : Card = struct
     | Ace ->
         (match s with
         | Clubs ->
-            print_endline " _____ ";
             print_endline "|A _  |";
             print_endline "| ( ) |";
             print_endline "|(_'_)|";
             print_endline "|  |  |"
         | Diamonds ->
-            print_endline " _____ ";
             print_endline "|A ^  |";
             print_endline "| / \\ |";
             print_endline "| \\ / |";
             print_endline "|  .  |"
         | Hearts ->
-            print_endline " _____ ";
             print_endline "|A_ _ |";
             print_endline "|( v )|";
             print_endline "| \\ / |";
             print_endline "|  .  |"
         | Spades ->
-            print_endline " _____ ";
             print_endline "|A .  |";
             print_endline "| /.\\ |";
             print_endline "|(_._)|";
             print_endline "|  |  |");
         print_endline "|____V|"
     | _ ->
-        print_endline " _____ ";
         if f = Queen then print_endline "|Q  ww|" else print_endline "|K  WW|";
         (match s with
         | Clubs ->
