@@ -17,25 +17,26 @@ module type Card = sig
   type t
   (** Type representing the data of the card *)
 
-  val create : t -> t
+  (* val create : t -> t *)
   (** [create x] creates a card with data [x] *)
 
   val value : t -> int
   (** [value c] returns the value of the card [c] *)
 
   val suit : t -> suit
+  (** [suit c] returns the suit of the card [c] *)
 
   val print : t -> unit
   (** [print c] prints the card [c] in the terminal *)
 end
 
-module SpotCard : Card = struct
+module SpotCard = struct
   type t = {
     number : int;
     suit : suit;
   }
 
-  let create d = { number = d.number; suit = d.suit }
+  let create n s = { number = n; suit = s }
 
   let value card =
     match card with

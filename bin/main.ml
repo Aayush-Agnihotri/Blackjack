@@ -1,3 +1,5 @@
+open Blackjack
+
 (* let rec repl (eval : string -> string) : unit = print_string "> "; let input
    = read_line () in match input with | "" -> print_endline "bye" | _ -> input
    |> eval |> print_endline; repl eval *)

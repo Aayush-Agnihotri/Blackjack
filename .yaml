@@ -4,7 +4,7 @@ group:
   - name: Nathan Palamuttam
     netid: npp8
   - name: Aayush Agnihotri
-    netid: aha73
+    netid: aa2328
   - name: Ram Peddu
     netid: rbp94
 # Your PM.
@@ -14,14 +14,14 @@ pm:
 # Set to false if you don't want your gallery entry to be public.
 publish: true
 # Pithy title
-title: ""21 All In: The Ultimate Blackjack Challenge""
+title: "21 All In: The Ultimate Blackjack Challenge"
 # OK if this is a Cornell Github link, but public gallery viewers won't be able to see it.
 git-repo: "https://github.com/Aayush-Agnihotri/Blackjack"
 # If you have no demo screencast, replace the url string with an empty string ""
 demo-video-url: ""
 # Write a short, attention-grabbing description of your project.
 desc: >
-  Our project is Blackjack with altered functionality. Instead of everyone being 
+  Our project is Blackjack with altered functionality. It offers the standard features of Instead of everyone being 
   dealt one card to begin with, the dealer goes one by one to each player and asks
   them if they want to hit or stay. Based on the past players' decisions and results,
   the CPUs that we have built will change their decisions on whether to hit or stay.
