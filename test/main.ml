@@ -1,5 +1,5 @@
 open OUnit2
-
+open Player
 (** [pp_string s] pretty-prints string [s]. *)
 (* let pp_string s = "\"" ^ s ^ "\"" *)
 
@@ -12,5 +12,14 @@ open OUnit2
 
 (* let card_tests = [] let cpu_tests = [] let dealer_tests = [] let player_tests
    = [] *)
-let suite = "test suite" >::: List.flatten []
+
+ (* let game_tests = [
+   assert_equal 4 4;
+ ]  *)
+let suite = "test suite" >::: List.flatten [ (* card_tests; cpu_tests;
+                                               dealer_tests; player_tests *)]
 let () = run_test_tt_main suite
+
+
+
+
