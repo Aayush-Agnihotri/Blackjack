@@ -123,12 +123,33 @@ module FaceCard : Card = struct
     | Jack -> print_endline ""
     | Queen -> print_endline ""
     | King -> print_endline ""
-    | Ace -> (
-        match s with
-        | Clubs -> print_endline ""
-        | Diamonds -> print_endline ""
-        | Hearts -> print_endline ""
-        | Spades -> print_endline "")
+    | Ace ->
+        (match s with
+        | Clubs ->
+            print_endline " _____ ";
+            print_endline "|A _  |";
+            print_endline "| ( ) |";
+            print_endline "|(_'_)|";
+            print_endline "|  |  |"
+        | Diamonds ->
+            print_endline " _____ ";
+            print_endline "|A ^  |";
+            print_endline "| / \\ |";
+            print_endline "| \\ / |";
+            print_endline "|  .  |"
+        | Hearts ->
+            print_endline " _____ ";
+            print_endline "|A_ _ |";
+            print_endline "|( v )|";
+            print_endline "| \\ / |";
+            print_endline "|  .  |"
+        | Spades ->
+            print_endline " _____ ";
+            print_endline "|A .  |";
+            print_endline "| /.\\ |";
+            print_endline "|(_._)|";
+            print_endline "|  |  |");
+        print_endline "|____V|"
 
   let print card =
     match card with
