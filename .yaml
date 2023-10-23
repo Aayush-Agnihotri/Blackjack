@@ -21,7 +21,10 @@ git-repo: "https://github.com/Aayush-Agnihotri/Blackjack"
 demo-video-url: ""
 # Write a short, attention-grabbing description of your project.
 desc: >
-  Our project is Blackjack with altered functionality. It offers the standard features of Instead of everyone being 
-  dealt one card to begin with, the dealer goes one by one to each player and asks
-  them if they want to hit or stay. Based on the past players' decisions and results,
-  the CPUs that we have built will change their decisions on whether to hit or stay.
+  Our project is Blackjack with altered functionality. It offers the standard
+  features of allowing players to hit to get up to 21 or stay to remain with the
+  same cards, with a visual display in the terminal of the cards a player holds.
+  However, instead of everyone being dealt one card to begin with, the dealer
+  goes one by one to each player and asks them if they want to hit or stay.
+  Based on the past players' decisions and results, the CPUs that we have built
+  will change their decisions on whether to hit or stay.
