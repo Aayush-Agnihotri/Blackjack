@@ -1,3 +1,17 @@
+(** Variant of the different suits *)
+type suit =
+  | Clubs
+  | Diamonds
+  | Hearts
+  | Spades
+
+(** Variant of the different faces *)
+type face =
+  | Jack
+  | Queen
+  | King
+  | Ace
+
 (** The signature of a card *)
 module type Card = sig
   type t
@@ -6,21 +20,14 @@ module type Card = sig
   val create : t -> t
   (** [create x] creates a card with data [x] *)
 
+  val value : t -> int
+  (** [value c] returns the value of the card [c] *)
+
+  val suit : t -> suit
+
   val print : t -> unit
   (** [print c] prints the card [c] in the terminal *)
 end
-
-type suit =
-  | Clubs
-  | Diamonds
-  | Hearts
-  | Spades
-
-type face =
-  | Jack
-  | Queen
-  | King
-  | Ace
 
 module SpotCard : Card = struct
   type t = {
@@ -29,6 +36,14 @@ module SpotCard : Card = struct
   }
 
   let create d = { number = d.number; suit = d.suit }
+
+  let value card =
+    match card with
+    | { number; _ } -> number
+
+  let suit card =
+    match card with
+    | { suit; _ } -> suit
 
   let print_card_template n symbol =
     print_endline " _____ ";
@@ -109,6 +124,19 @@ module FaceCard : Card = struct
   }
 
   let create d = { face = d.face; suit = d.suit }
+
+  let value card =
+    match card with
+    | { face; _ } -> (
+        match face with
+        | Jack -> 10
+        | Queen -> 10
+        | King -> 10
+        | Ace -> 11)
+
+  let suit card =
+    match card with
+    | { suit; _ } -> suit
 
   let print_card_template (f : face) (s : suit) =
     match f with
