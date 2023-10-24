@@ -18,8 +18,8 @@ module type Card = sig
   type t
   (** Type representing the data of the card *)
 
-  val create : int -> suit -> face -> t
-  (** [create v s f] creates a card with value [v], suit [s] and face [f] *)
+  val create : int -> suit -> t
+  (** [create v s] creates a card with value [v] and suit [s] *)
 
   val value : t -> int
   (** [value c] returns the value of the card [c] *)

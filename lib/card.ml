@@ -14,7 +14,7 @@ module type Card = sig
 
   type t
 
-  val create : int -> suit -> face -> t
+  val create : int -> suit -> t
   val value : t -> int
   val suit : t -> suit
   val print : t -> unit
@@ -39,7 +39,7 @@ module SpotCard = struct
     suit : suit;
   }
 
-  let create (n : int) (s : suit) (f : face) = { number = n; suit = s }
+  let create (n : int) (s : suit) = { number = n; suit = s }
 
   let value (card : t) =
     match card with
@@ -140,7 +140,17 @@ module FaceCard : Card = struct
     suit : suit;
   }
 
-  let create (n : int) (s : suit) (f : face) = { face = f; suit = s }
+  let create (n : int) (s : suit) =
+    {
+      face =
+        (match n with
+        | 13 -> Jack
+        | 14 -> Queen
+        | 15 -> King
+        | 16 -> Ace
+        | _ -> None);
+      suit = s;
+    }
 
   let value (card : t) =
     match card with
