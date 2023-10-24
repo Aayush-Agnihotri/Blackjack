@@ -1,3 +1,4 @@
 (library
  (name blackjack)
- (public_name Blackjack))
+ (public_name Blackjack)
+ (libraries str))

@@ -1,52 +1,55 @@
-(** Variant of the different suits *)
-type suit =
-  | Clubs
-  | Diamonds
-  | Hearts
-  | Spades
-
-(** Variant of the different faces *)
-type face =
-  | Jack
-  | Queen
-  | King
-  | Ace
-
-(** The signature of a card *)
 module type Card = sig
+  type suit =
+    | Clubs
+    | Diamonds
+    | Hearts
+    | Spades
+
+  type face =
+    | Jack
+    | Queen
+    | King
+    | Ace
+    | None
+
   type t
-  (** Type representing the data of the card *)
 
-  (* val create : t -> t *)
-  (** [create x] creates a card with data [x] *)
-
+  val create : int -> suit -> face -> t
   val value : t -> int
-  (** [value c] returns the value of the card [c] *)
-
   val suit : t -> suit
-  (** [suit c] returns the suit of the card [c] *)
-
   val print : t -> unit
-  (** [print c] prints the card [c] in the terminal *)
 end
 
 module SpotCard = struct
+  type suit =
+    | Clubs
+    | Diamonds
+    | Hearts
+    | Spades
+
+  type face =
+    | Jack
+    | Queen
+    | King
+    | Ace
+    | None
+
   type t = {
     number : int;
     suit : suit;
   }
 
-  let create n s = { number = n; suit = s }
+  let create (n : int) (s : suit) (f : face) = { number = n; suit = s }
 
-  let value card =
+  let value (card : t) =
     match card with
     | { number; _ } -> number
 
-  let suit card =
+  let suit (card : t) =
     match card with
     | { suit; _ } -> suit
 
-  let print_card_template n symbol =
+  let print_card_template (n : string) (symbol : string) =
     print_endline " _____ ";
     match n with
     | "2" ->
@@ -107,7 +110,7 @@ module SpotCard = struct
         print_endline
           ("Unable to represent card of number " ^ n ^ " and suit " ^ symbol)
 
-  let print card =
+  let print (card : t) =
     match card with
     | { number; suit } ->
         print_card_template (string_of_int number)
@@ -119,23 +122,37 @@ module SpotCard = struct
 end
 
 module FaceCard : Card = struct
+  type suit =
+    | Clubs
+    | Diamonds
+    | Hearts
+    | Spades
+
+  type face =
+    | Jack
+    | Queen
+    | King
+    | Ace
+    | None
+
   type t = {
     face : face;
     suit : suit;
   }
 
-  let create d = { face = d.face; suit = d.suit }
+  let create (n : int) (s : suit) (f : face) = { face = f; suit = s }
 
-  let value card =
+  let value (card : t) =
     match card with
     | { face; _ } -> (
         match face with
         | Jack -> 10
         | Queen -> 10
         | King -> 10
-        | Ace -> 11)
+        | Ace -> 11
+        | None -> 0)
 
-  let suit card =
+  let suit (card : t) =
     match card with
     | { suit; _ } -> suit
 
@@ -185,6 +202,7 @@ module FaceCard : Card = struct
             print_endline "|(_._)|";
             print_endline "|  |  |");
         print_endline "|____V|"
+    | None -> print_endline ""
     | _ ->
         if f = Queen then print_endline "|Q  ww|" else print_endline "|K  WW|";
         (match s with
@@ -206,7 +224,7 @@ module FaceCard : Card = struct
             print_endline "| |%%%|");
         if f = Queen then print_endline "|_%%%O|" else print_endline "|_%%%>|"
 
-  let print card =
+  let print (card : t) =
     match card with
     | { face; suit } -> print_card_template face suit
 end

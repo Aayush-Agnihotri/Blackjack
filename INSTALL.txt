@@ -1,0 +1,5 @@
+To install and run the project, do the following:
+
+1.) Unzip the Blackjack project
+2.) Open a terminal instance and change directories into the unzipped project
+3.) Run 'make blackjack'

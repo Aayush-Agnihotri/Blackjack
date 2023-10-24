@@ -1,5 +1,3 @@
 (executable
- (public_name Blackjack)
  (name main)
- (libraries Blackjack)
- (modules Blackjack))
+ (libraries Blackjack))
