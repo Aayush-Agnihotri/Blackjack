@@ -29,6 +29,8 @@ module type Card = sig
 
   val print : t -> unit
   (** [print c] prints the card [c] in the terminal *)
+  val face : t -> face
+  (** [print c] prints the card [c] in the terminal *)
 end
 
 module SpotCard : Card
