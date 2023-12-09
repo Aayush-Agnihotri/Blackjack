@@ -15,7 +15,7 @@ let generate_card rand_num rand_suit =
   in
   SpotCardGenerator.print (SpotCardGenerator.create rand_num suit)
 
-let rec repl player_hand =
+let rec repl player_hand : int =
   print_string "> ";
   let input = read_line () in
   match input with
@@ -26,16 +26,22 @@ let rec repl player_hand =
       generate_card rand_num rand_suit;
 
       let player_hand_sum = List.fold_left ( + ) 0 player_hand + rand_num in
-      if player_hand_sum > 21 then print_endline "You busted!"
-      else if player_hand_sum = 21 then print_endline "You win!"
+      if player_hand_sum > 21 then (
+        print_endline "You busted!";
+        0)
+      else if player_hand_sum = 21 then (
+        print_endline "You got 21!";
+        21)
       else (
         print_endline
           ("Your hand's current value is " ^ string_of_int player_hand_sum);
         repl (rand_num :: player_hand))
   | "S" ->
       print_endline "You chose to stay";
-      repl player_hand
-  | _ -> print_endline "Thanks for playing!"
+      List.fold_left ( + ) 0 player_hand
+  | _ ->
+      print_endline "Thanks for playing!";
+      List.fold_left ( + ) 0 player_hand
 
 let rec repl_cpu cpu_hand =
   print_string "> ";
@@ -193,6 +199,56 @@ let rec fourth_input_cpu first second third cpu_hand =
       print_endline "You chose to stay";
       cpu_sum
 
+let rec dealer_decide first second third fourth player dealer_val : bool =
+  let failed = ref 0 in
+  if first = 0 then failed := !failed + 1 else failed := !failed;
+  if second = 0 then failed := !failed + 1 else failed := !failed;
+  if third = 0 then failed := !failed + 1 else failed := !failed;
+  if fourth = 0 then failed := !failed + 1 else failed := !failed;
+  if player = 0 then failed := !failed + 1 else failed := !failed;
+
+  if !failed > 4 then true
+  else
+    let count = ref 0 in
+    if dealer_val > first then count := !count + 1 else count := !count;
+    if dealer_val > second then failed := !count + 1 else count := !count;
+    if dealer_val > third then count := !count + 1 else count := !count;
+    if dealer_val > fourth then count := !count + 1 else count := !count;
+    if dealer_val > player then count := !count + 1 else count := !count;
+    if !count > 4 then false
+    else if !count > 3 && dealer_val > player then false
+    else if !count > 2 && dealer_val > 15 then false
+    else true
+
+let rec dealer_player first second third fourth player dealer_hand =
+  print_string "> ";
+  let dealer_sum = List.fold_left ( + ) 0 dealer_hand in
+  (* let decide_num = decide_3 first second third cpu_sum in *)
+  let input : bool =
+    dealer_decide first second third fourth player dealer_sum
+  in
+  match input with
+  | true ->
+      print_endline "You chose to hit";
+      let rand_num = 2 + Random.int 8 in
+      let rand_suit = Random.int 4 in
+      generate_card rand_num rand_suit;
+
+      let player_hand_sum = List.fold_left ( + ) 0 dealer_hand + rand_num in
+      if player_hand_sum > 21 then (
+        print_endline "You busted!";
+        0)
+      else if player_hand_sum = 21 then (
+        print_endline "You win!";
+        21)
+      else (
+        print_endline
+          ("Your hand's current value is " ^ string_of_int player_hand_sum);
+        repl_cpu (rand_num :: dealer_hand))
+  | false ->
+      print_endline "You chose to stay";
+      dealer_sum
+
 let () =
   print_endline "\n\nWelcome to Blackjack!\n";
   let frst_cpu = repl_cpu [] in
@@ -203,6 +259,14 @@ let () =
   print_endline ("Third cpu score " ^ string_of_int third_cpu);
   let fourth_cpu = fourth_input_cpu frst_cpu second_cpu third_cpu [] in
   print_endline ("Fourth cpu score " ^ string_of_int fourth_cpu);
-
+  print_endline
+    "Now it is time for you to play the game. You can scroll up to see the \
+     cpu's score. After you player the dealer will play and you will see if \
+     you win";
   print_endline "Press H to hit, S to stay, or E to exit";
-  repl []
+  let player_val = repl [] in
+  print_endline ("Player score " ^ string_of_int player_val);
+  let dealer_val =
+    dealer_player frst_cpu second_cpu third_cpu fourth_cpu player_val []
+  in
+  print_endline ("Dealer Value :" ^ string_of_int dealer_val)
