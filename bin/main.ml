@@ -1,6 +1,7 @@
 open Blackjack
 module SpotCardGenerator = Card.SpotCard
 module FaceCardGenerator = Card.FaceCard
+module PersonGenerator = Person.Person_Gen
 
 let _ = Random.self_init ()
 
@@ -14,7 +15,7 @@ let generate_card rand_num rand_suit =
     | _ -> failwith "Invalid suit"
   in
   SpotCardGenerator.print (SpotCardGenerator.create rand_num suit)
-
+(** This specific function makes a player who takes in function input to decide wheter they want to keep gettng cards or not*)
 let rec repl player_hand : int =
   print_string "> ";
   let input = read_line () in
@@ -42,8 +43,8 @@ let rec repl player_hand : int =
   | _ ->
       print_endline "Thanks for playing!";
       List.fold_left ( + ) 0 player_hand
-
-let rec repl_cpu cpu_hand =
+(** This representgs a general cpu who is hardcoded to stop sasking for cards when their total card sum passes 17. They represent a more aggresive player*)
+(* let rec agg_repl_cpu cpu_hand =
   print_string "> ";
   let cpu_sum = List.fold_left ( + ) 0 cpu_hand in
 
@@ -65,11 +66,13 @@ let rec repl_cpu cpu_hand =
       else (
         print_endline
           ("Your hand's current value is " ^ string_of_int player_hand_sum);
-        repl_cpu (rand_num :: cpu_hand))
+        agg_repl_cpu (rand_num :: cpu_hand))
   | false ->
       print_endline "You chose to stay";
-      cpu_sum
+      cpu_sum *)
 
+
+(** This represents a more passive player who stops playign when their total hand surpasses 15. *)
 let rec repl_cpu cpu_hand =
   print_string "> ";
   let cpu_sum = List.fold_left ( + ) 0 cpu_hand in
@@ -77,26 +80,27 @@ let rec repl_cpu cpu_hand =
   let input = cpu_sum < 15 in
   match input with
   | true ->
-      print_endline "You chose to hit";
+      print_endline "CPU chose to hit";
       let rand_num = 2 + Random.int 8 in
       let rand_suit = Random.int 4 in
       generate_card rand_num rand_suit;
 
       let player_hand_sum = List.fold_left ( + ) 0 cpu_hand + rand_num in
       if player_hand_sum > 21 then (
-        print_endline "You busted!";
+        print_endline "CPU busted!";
         0)
       else if player_hand_sum = 21 then (
-        print_endline "You win!";
+        print_endline "CPU won!";
         21)
       else (
         print_endline
-          ("Your hand's current value is " ^ string_of_int player_hand_sum);
+          ("CPU hand's current value is " ^ string_of_int player_hand_sum);
         repl_cpu (rand_num :: cpu_hand))
   | false ->
-      print_endline "You chose to stay";
+      print_endline "CPU chose to stay";
       cpu_sum
 
+(** This representgs a general cpu who is hardcoded to stop sasking for cards when their total card sum passes 17. They represent a more aggresive player*)
 let rec aggresive_repl_cpu cpu_hand =
   print_string "> ";
   let cpu_sum = List.fold_left ( + ) 0 cpu_hand in
@@ -104,24 +108,24 @@ let rec aggresive_repl_cpu cpu_hand =
   let input = cpu_sum < 17 in
   match input with
   | true ->
-      print_endline "You chose to hit";
+      print_endline "CPU chose to hit";
       let rand_num = 2 + Random.int 8 in
       let rand_suit = Random.int 4 in
       generate_card rand_num rand_suit;
 
       let player_hand_sum = List.fold_left ( + ) 0 cpu_hand + rand_num in
       if player_hand_sum > 21 then (
-        print_endline "You busted!";
+        print_endline "CPU busted!";
         0)
       else if player_hand_sum = 21 then (
-        print_endline "You win!";
+        print_endline "CPU won!";
         21)
       else (
         print_endline
-          ("Your hand's current value is " ^ string_of_int player_hand_sum);
-        repl_cpu (rand_num :: cpu_hand))
+          ("CPU hand's current value is " ^ string_of_int player_hand_sum);
+        aggresive_repl_cpu (rand_num :: cpu_hand))
   | false ->
-      print_endline "You chose to stay";
+      print_endline "CPU chose to stay";
       cpu_sum
 
 let rec decide_2 first second currenthand =
@@ -132,7 +136,7 @@ let rec decide_2 first second currenthand =
   else
     let max_total = max first second in
     if max_total > 20 then 15 else if max_total < 15 then 15 else max_total
-
+(** This represents a player who uses the outputs of the first two players to determine wheterer they still want to get more cards*)
 let rec third_input_cpu first second cpu_hand =
   print_string "> ";
   let cpu_sum = List.fold_left ( + ) 0 cpu_hand in
@@ -140,26 +144,25 @@ let rec third_input_cpu first second cpu_hand =
   let input = cpu_sum < decide_num in
   match input with
   | true ->
-      print_endline "You chose to hit";
+      print_endline "CPU chose to hit";
       let rand_num = 2 + Random.int 8 in
       let rand_suit = Random.int 4 in
       generate_card rand_num rand_suit;
 
       let player_hand_sum = List.fold_left ( + ) 0 cpu_hand + rand_num in
       if player_hand_sum > 21 then (
-        print_endline "You busted!";
+        print_endline "CPU busted!";
         0)
       else if player_hand_sum = 21 then (
-        print_endline "You win!";
+        print_endline "CPU won!";
         21)
       else (
         print_endline
-          ("Your hand's current value is " ^ string_of_int player_hand_sum);
-        repl_cpu (rand_num :: cpu_hand))
+          ("CPU hand's current value is " ^ string_of_int player_hand_sum);
+        third_input_cpu first second (rand_num :: cpu_hand))
   | false ->
-      print_endline "You chose to stay";
+      print_endline "CPU chose to stay";
       cpu_sum
-
 let rec decide_3 first second third currenthand =
   let failed = ref 0 in
   if first = 0 then failed := !failed + 1 else failed := !failed;
@@ -172,6 +175,7 @@ let rec decide_3 first second third currenthand =
     let max_total = max max_total1 third in
     if max_total > 20 then 15 else if max_total < 15 then 15 else max_total
 
+(** This represents a player who uses the outputs of the first three players to determine wheterer they still want to get more cards*)
 let rec fourth_input_cpu first second third cpu_hand =
   print_string "> ";
   let cpu_sum = List.fold_left ( + ) 0 cpu_hand in
@@ -179,24 +183,24 @@ let rec fourth_input_cpu first second third cpu_hand =
   let input = cpu_sum < decide_num in
   match input with
   | true ->
-      print_endline "You chose to hit";
+      print_endline "CPU chose to hit";
       let rand_num = 2 + Random.int 8 in
       let rand_suit = Random.int 4 in
       generate_card rand_num rand_suit;
 
       let player_hand_sum = List.fold_left ( + ) 0 cpu_hand + rand_num in
       if player_hand_sum > 21 then (
-        print_endline "You busted!";
+        print_endline "CPU busted!";
         0)
       else if player_hand_sum = 21 then (
-        print_endline "You win!";
+        print_endline "CPU won!";
         21)
       else (
         print_endline
-          ("Your hand's current value is " ^ string_of_int player_hand_sum);
-        repl_cpu (rand_num :: cpu_hand))
+          ("CPU hand's current value is " ^ string_of_int player_hand_sum);
+        fourth_input_cpu first second third (rand_num :: cpu_hand))
   | false ->
-      print_endline "You chose to stay";
+      print_endline "CPU chose to stay";
       cpu_sum
 
 let rec dealer_decide first second third fourth player dealer_val : bool =
@@ -219,7 +223,7 @@ let rec dealer_decide first second third fourth player dealer_val : bool =
     else if !count > 3 && dealer_val > player then false
     else if !count > 2 && dealer_val > 15 then false
     else true
-
+(** Represents a dealer player who uses the outputs of all the other players to select the best choice of wheter they should still keep taking cards.*)
 let rec dealer_player first second third fourth player dealer_hand =
   print_string "> ";
   let dealer_sum = List.fold_left ( + ) 0 dealer_hand in
@@ -229,25 +233,31 @@ let rec dealer_player first second third fourth player dealer_hand =
   in
   match input with
   | true ->
-      print_endline "You chose to hit";
+      print_endline "Dealer chose to hit";
       let rand_num = 2 + Random.int 8 in
       let rand_suit = Random.int 4 in
       generate_card rand_num rand_suit;
 
       let player_hand_sum = List.fold_left ( + ) 0 dealer_hand + rand_num in
       if player_hand_sum > 21 then (
-        print_endline "You busted!";
+        print_endline "Dealer busted!";
         0)
       else if player_hand_sum = 21 then (
-        print_endline "You win!";
+        print_endline "Dealer won!";
         21)
       else (
         print_endline
-          ("Your hand's current value is " ^ string_of_int player_hand_sum);
-        repl_cpu (rand_num :: dealer_hand))
+          ("Dealer hand's current value is " ^ string_of_int player_hand_sum);
+        dealer_player first second third fourth player (rand_num :: dealer_hand))
   | false ->
-      print_endline "You chose to stay";
+      print_endline "Dealer chose to stay";
       dealer_sum
+
+
+let winner name= print_endline(name ^ " is a winner");
+PersonGenerator.print_large_stick_figure_smile()
+
+let loser name= print_endline(name^ "Lost"); PersonGenerator.print_large_stick_figure_nosmile()
 
 let () =
   print_endline "\n\nWelcome to Blackjack!\n";
@@ -259,6 +269,9 @@ let () =
   print_endline ("Third cpu score " ^ string_of_int third_cpu);
   let fourth_cpu = fourth_input_cpu frst_cpu second_cpu third_cpu [] in
   print_endline ("Fourth cpu score " ^ string_of_int fourth_cpu);
+  print_endline("");
+  print_endline(""); 
+  print_endline(""); 
   print_endline
     "Now it is time for you to play the game. You can scroll up to see the \
      cpu's score. After you player the dealer will play and you will see if \
@@ -269,4 +282,26 @@ let () =
   let dealer_val =
     dealer_player frst_cpu second_cpu third_cpu fourth_cpu player_val []
   in
-  print_endline ("Dealer Value :" ^ string_of_int dealer_val)
+  print_endline("");
+  print_endline("");
+  print_endline ("The Dealers FInal Score was :" ^ string_of_int dealer_val); 
+
+  if frst_cpu> dealer_val then winner "First CPU" else loser "First CPU" ;
+  print_endline("");
+  print_endline("");
+  if second_cpu> dealer_val then winner "Second CPU" else loser "Second CPU";
+  print_endline("");
+  print_endline("");
+  if third_cpu> dealer_val  then winner "Third CPU" else loser "Third  CPU";
+  print_endline("");
+  print_endline("");
+  if fourth_cpu> dealer_val  then winner "Fourth CPU" else loser "Fourth CPU";
+  print_endline("");
+  print_endline("");
+  if player_val> dealer_val  then winner "Player" else loser "Player";
+
+  
+
+
+
+  
