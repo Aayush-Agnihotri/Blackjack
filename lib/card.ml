@@ -20,7 +20,7 @@ module type Card = sig
   val print : t -> unit
 end
 
-module SpotCard = struct
+module SpotCard: Card = struct
   type suit =
     | Clubs
     | Diamonds
@@ -49,6 +49,19 @@ module SpotCard = struct
     match card with
     | { suit; _ } -> suit
 
+  let print_suit (card: t) =
+    match card with
+    | { suit; _ } -> match suit with 
+      | Clubs -> "Clubs"
+      | Diamonds -> "Diamonds"
+      | Hearts -> "Hearts"
+      | Spades -> "Spades"
+
+    let print_create (n : int) (s : suit) =
+    {
+      number = n;
+      suit = s;
+    }
   let print_card_template (n : string) (symbol : string) =
     print_endline " _____ ";
     match n with
@@ -119,6 +132,7 @@ module SpotCard = struct
           | Diamonds -> "o"
           | Hearts -> "v"
           | Spades -> "^")
+    
 end
 
 module FaceCard : Card = struct
@@ -166,6 +180,13 @@ module FaceCard : Card = struct
     match card with
     | { suit; _ } -> suit
 
+    let print_suit (card: t) =
+      match card with
+      | { suit; _ } -> match suit with 
+        | Clubs -> "Clubs"
+        | Diamonds -> "Diamonds"
+        | Hearts -> "Hearts"
+        | Spades -> "Spades"
   let print_card_template (f : face) (s : suit) =
     print_endline " _____ ";
     match f with
