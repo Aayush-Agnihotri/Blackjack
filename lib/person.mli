@@ -7,4 +7,6 @@ module Person_Gen : sig
   (** print_large_stick_figure_smile creates a stick figure representation of a
       human head that is not smiling *)
   val print_money: string -> unit
+  val  print_winner: unit -> unit
+  val print_loser: unit -> unit
 end

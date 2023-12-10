@@ -2,7 +2,7 @@
 module SpotCardGenerator = Card.SpotCard
 module FaceCardGenerator = Card.FaceCard
 module PersonGenerator = Person.Person_Gen
-
+module Gamegen= Game.Game
 module Fullgamegen = struct
   let generate_card rand_num rand_suit =
     let suit =
@@ -193,12 +193,16 @@ module Fullgamegen = struct
                       | false ->
                           print_endline "Dealer chose to stay";
                           dealer_sum
-                    
-        let winner name num= print_endline(name ^ " is a winner");
+        let example_game num= Gamegen.addToCpu1(); Gamegen.addToCpu2(); Gamegen.addToCpu3(); Gamegen.addToCpu4()
+        let winner is_player name num= print_endline(name ^ " is a winner");
+            if is_player then  PersonGenerator.print_winner() else print_endline(" ");
+            print_endline("");
             PersonGenerator.print_large_stick_figure_smile();
             PersonGenerator.print_money num
                           
-        let loser name= print_endline(name^ "Lost"); 
+        let loser is_player name= 
+        if is_player then  PersonGenerator.print_loser() else print_endline(" ");
+        print_endline(name^ "Lost"); 
         PersonGenerator.print_large_stick_figure_nosmile(); 
         PersonGenerator.print_money "0"
 end

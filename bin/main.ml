@@ -16,7 +16,7 @@ let () =
   let weightp =
     match play_bet with
     | x -> x
-    | _ -> failwith "error"
+    (* | _ -> failwith "error" *)
   in
   let paly_bet1 = weightp in
   print_int cpu_bet;
@@ -47,7 +47,7 @@ let () =
   let weightp =
     match morebet with
     | x -> x
-    | _ -> failwith "error"
+    (* | _ -> failwith "error" *)
   in
   let finalbet = weightp + paly_bet1 in
 
@@ -68,25 +68,25 @@ let () =
   print_endline ("The Dealers FInal Score was:" ^ string_of_int dealer_val);
 
   if frst_cpu > dealer_val then
-    GameGenerator.winner "First CPU" (string_of_int (cpu_bet * 2))
-  else GameGenerator.loser "First CPU";
+    GameGenerator.winner false "First CPU" (string_of_int (cpu_bet * 2))
+  else GameGenerator.loser false "First CPU";
   print_endline "";
   print_endline "";
   if second_cpu > dealer_val then
-    GameGenerator.winner "Second CPU" (string_of_int (cpu_bet * 2))
-  else GameGenerator.loser "Second CPU";
+    GameGenerator.winner false "Second CPU" (string_of_int (cpu_bet * 2))
+  else GameGenerator.loser false "Second CPU";
   print_endline "";
   print_endline "";
   if third_cpu > dealer_val then
-    GameGenerator.winner "Third CPU" (string_of_int (cpu_bet * 2))
-  else GameGenerator.loser "Third  CPU";
+    GameGenerator.winner false "Third CPU" (string_of_int (cpu_bet * 2))
+  else GameGenerator.loser false "Third  CPU";
   print_endline "";
   print_endline "";
   if fourth_cpu > dealer_val then
-    GameGenerator.winner "Fourth CPU" (string_of_int (cpu_bet * 2))
-  else GameGenerator.loser "Fourth CPU";
+    GameGenerator.winner false "Fourth CPU" (string_of_int (cpu_bet * 2))
+  else GameGenerator.loser false "Fourth CPU";
   print_endline "";
   print_endline "";
   if player_val > dealer_val then
-    GameGenerator.winner "Player" (string_of_int (cpu_bet * 2))
-  else GameGenerator.loser "Player"
+    GameGenerator.winner true "Player" (string_of_int (finalbet * 2))
+  else GameGenerator.loser true "Player"
