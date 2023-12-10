@@ -1,20 +1,13 @@
 module type Playerprofile = sig
-
   val sum : int ref
-  (**Integer val that represents the players current value of their cards*)
-
-
   val add_to_sum : int -> unit
-  (**Function that allows a user to add a card value to the current sum*)
-
   val get_boolean_input : unit -> bool
-  (**Checks wheter the player should draw another card *)
-
 end
 
-module Player: Playerprofile  = struct
+module Player : Playerprofile = struct
   let sum = ref 0
   let add_to_sum (num : int) = sum := !sum + num
+
   let get_boolean_input () =
     print_string "Enter 'y' or 'n': ";
     flush stdout;
@@ -25,8 +18,4 @@ module Player: Playerprofile  = struct
     | "y" -> true
     | "n" -> false
     | _ -> false
-  ;;
-
-end (* This will be a boolean value: true for 'y', false for 'n', and false for any other input *)
-
-
+end

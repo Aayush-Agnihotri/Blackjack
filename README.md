@@ -1,4 +1,4 @@
-# Blackjack
+# 21 All In: The Ultimate Blackjack Challenge
 
 Team Members:
 Aayush Agnihotri (aa2328)

@@ -1,16 +1,20 @@
+(** The signature of a dealer player *)
+
 module Dealer : sig
   val sum : int ref
-  (** Represents the current sum of the dealer*)
+  (** Represents the sum of the dealer's hand *)
 
   val add_to_sum : int -> unit
-  (** Adds card to dealer's hand*)
+  (** [add_to_sum n] adds [n] to the dealer's sum *)
 
   val num_of_players : int
-  (** Represents number of players playing the game*)
+  (** [num_of_players] returns the total number of players in the current game *)
 
   val set_players : int -> string -> unit
-  (**Iniitalizes the players for the game*)
+  (** [set_players n name] sets the current sum of player [name] to their
+      previous value plus [n] *)
 
   val check_more_cards : bool
-  (** Checks if the dealer should take another card*)
+  (** [check_more_cards] returns whether the dealer should continue to hit or
+      not *)
 end

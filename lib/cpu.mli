@@ -1,11 +1,13 @@
+(** The signature of a CPU player *)
+
 module CPU : sig
-  
   val sum : int ref
-  (**Integer val that represents the players current value of their cards*)
+  (** The sum of the cards in the CPU's hand *)
 
   val add_to_sum : int -> unit
-  (**Function that allows a user to add a card value to the current sum*)
+  (** [add_to_sum n] adds [n] to the sum of the cards in the CPU's hand *)
 
   val check_more : bool
-  (**Checks wheter the player should draw another card *)
+  (** [check_more] is true if the CPU wants to draw another card, and false
+      otherwise *)
 end

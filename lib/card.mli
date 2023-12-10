@@ -1,4 +1,5 @@
 (** The signature of a card *)
+
 module type Card = sig
   (** Variant of the different suits *)
   type suit =
@@ -29,8 +30,9 @@ module type Card = sig
 
   val print : t -> unit
   (** [print c] prints the card [c] in the terminal *)
+
   val face : t -> face
-  (** [print c] prints the card [c] in the terminal *)
+  (** [face c] returns the face of the card [c] *)
 end
 
 module SpotCard : Card
