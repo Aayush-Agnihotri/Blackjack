@@ -14,11 +14,37 @@ let () =
   print_endline
     (system_color
    ^ "How much money do you want CPUs to bet (enter a nonnegative integer)?");
-  let cpu_bet = read_int () in
+  let cpu_bet =
+    try read_int ()
+    with Failure _ ->
+      print_endline "Invalid input. Ending program.";
+      exit 1
+  in
+  let cpu_bet =
+    match cpu_bet with
+    | x ->
+        if x < 0 then (
+          print_endline "Invalid input. Ending program.";
+          exit 1)
+        else x
+  in
   print_endline
     (system_color
    ^ "How much money do you want to bet (enter a nonnegative integer)?");
-  let play_bet = read_int () in
+  let play_bet =
+    try read_int ()
+    with Failure _ ->
+      print_endline "Invalid input. Ending program.";
+      exit 1
+  in
+  let play_bet =
+    match play_bet with
+    | x ->
+        if x < 0 then (
+          print_endline "Invalid input. Ending program.";
+          exit 1)
+        else x
+  in
   let weightp =
     match play_bet with
     | x -> x
@@ -74,7 +100,20 @@ let () =
    ^ "Before you start playing, would you like to add more money to your bet? \
       (Enter a nonnegative interger representing how much more money you would \
       like to add)");
-  let morebet = read_int () in
+  let morebet =
+    try read_int ()
+    with Failure _ ->
+      print_endline "Invalid input. Ending program.";
+      exit 1
+  in
+  let morebet =
+    match morebet with
+    | x ->
+        if x < 0 then (
+          print_endline "Invalid input. Ending program.";
+          exit 1)
+        else x
+  in
   let weightp =
     match morebet with
     | x -> x
