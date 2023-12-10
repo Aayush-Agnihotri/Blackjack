@@ -10,7 +10,7 @@ module Person_Gen = struct
     print_endline "      "
 
   let print_money num =
-    print_endline "*************************************";
+    print_endline "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$";
     print_endline "* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ *";
     print_endline ("* $" ^ num ^ "                             " ^ num ^ "$ *");
     print_endline ("* $             " ^ "*****" ^ "           $ *");
@@ -22,7 +22,7 @@ module Person_Gen = struct
     print_endline ("* $             " ^ "******" ^ "             $ *");
     print_endline ("* $" ^ num ^ "                             " ^ num ^ "$ *");
     print_endline "* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ *";
-    print_endline "*************************************"
+    print_endline "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"
 
   let print_winner () =
     print_endline "  CCCC   OOO   N   N   GGGG  RRRR    A    TTTTT  SSSS ";

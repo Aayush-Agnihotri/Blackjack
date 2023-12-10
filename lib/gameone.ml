@@ -194,11 +194,12 @@ module Fullgamegen = struct
                           print_endline "Dealer chose to stay";
                           dealer_sum
         let example_game num= Gamegen.addToCpu1(); Gamegen.addToCpu2(); Gamegen.addToCpu3(); Gamegen.addToCpu4()
-        let winner is_player name num= print_endline(name ^ "won "^num^" dollars");
+        let winner is_player name num= print_endline(name ^ " won ");
             if is_player then  PersonGenerator.print_winner() else print_endline(" ");
             print_endline("");
             PersonGenerator.print_large_stick_figure_smile();
             print_endline("");
+            print_endline(name ^ " won "^num^" dollars");
             PersonGenerator.print_money num
                           
         let loser is_player name= 
