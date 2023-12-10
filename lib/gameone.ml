@@ -182,7 +182,7 @@ module Fullgamegen = struct
                       else
                         let count = ref 0 in
                         if dealer_val > first then count := !count + 1 else count := !count;
-                        if dealer_val > second then failed := !count + 1 else count := !count;
+                        if dealer_val > second then count := !count + 1 else count := !count;
                         if dealer_val > third then count := !count + 1 else count := !count;
                         if dealer_val > fourth then count := !count + 1 else count := !count;
                         if dealer_val > player then count := !count + 1 else count := !count;
