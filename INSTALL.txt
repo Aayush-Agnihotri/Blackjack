@@ -1,6 +1,6 @@
 To install and run the project, do the following:
 
-1.) Install OCaml by follow the textbook instructions at this link: https://cs3110.github.io/textbook/chapters/preface/install.html
+1.) Install OCaml and OPAM by following the textbook instructions at this link: https://cs3110.github.io/textbook/chapters/preface/install.html
 2.) Unzip the Blackjack project
 3.) Open a terminal instance and change directories into the unzipped project
 4.) Run 'make blackjack'

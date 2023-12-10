@@ -1,4 +1,3 @@
-(* open Blackjack *)
 module SpotCardGenerator = Card.SpotCard
 module FaceCardGenerator = Card.FaceCard
 module PersonGenerator = Person.Person_Gen
@@ -86,21 +85,21 @@ module Fullgamegen = struct
           let input = cpu_sum < decide_num in
           match input with
           | true ->
-              print_endline "CPU 3 chose to hit";
+              print_endline "CPU chose to hit";
               let rand_num = 2 + Random.int 8 in
               let rand_suit = Random.int 4 in
               generate_card rand_num rand_suit;
         
               let player_hand_sum = List.fold_left ( + ) 0 cpu_hand + rand_num in
               if player_hand_sum > 21 then (
-                print_endline "CPU 3 busted!";
+                print_endline "CPU busted!";
                 0)
               else if player_hand_sum = 21 then (
-                print_endline "CPU 3 won!";
+                print_endline "CPU won!";
                 21)
               else (
                 print_endline
-                  ("CPU 3hand's current value is " ^ string_of_int player_hand_sum);
+                  ("CPU hand's current value is " ^ string_of_int player_hand_sum);
                 third_input_cpu first second (rand_num :: cpu_hand))
           | false ->
               print_endline "CPU chose to stay";
@@ -125,24 +124,24 @@ module Fullgamegen = struct
                 let input = cpu_sum < decide_num in
                 match input with
                 | true ->
-                    print_endline "CPU 4 chose to hit";
+                    print_endline "CPU chose to hit";
                     let rand_num = 2 + Random.int 8 in
                     let rand_suit = Random.int 4 in
                     generate_card rand_num rand_suit;
               
                     let player_hand_sum = List.fold_left ( + ) 0 cpu_hand + rand_num in
                     if player_hand_sum > 21 then (
-                      print_endline "CPU 4 busted!";
+                      print_endline "CPU busted!";
                       0)
                     else if player_hand_sum = 21 then (
-                      print_endline "CPU 4 won!";
+                      print_endline "CPU won!";
                       21)
                     else (
                       print_endline
                         ("CPU 4 hand's current value is " ^ string_of_int player_hand_sum);
                       fourth_input_cpu first second third (rand_num :: cpu_hand))
                 | false ->
-                    print_endline "CPU 4 chose to stay";
+                    print_endline "CPU chose to stay";
                     cpu_sum
       let rec dealer_decide first second third fourth player dealer_val : bool =
                       let failed = ref 0 in
@@ -200,13 +199,13 @@ module Fullgamegen = struct
             print_endline("");
             PersonGenerator.print_large_stick_figure_smile();
             print_endline("");
-            print_endline(name ^ " won "^num^" dollars");
+            print_endline(name ^ " won " ^ num ^ " dollars");
             PersonGenerator.print_money num
                           
         let loser is_player name= 
         if is_player then  PersonGenerator.print_loser() else print_endline(" ");
         print_endline("");
-        print_endline(name^ "Lost their money"); 
+        print_endline(name ^ "\nLost their money"); 
         print_endline("");
         PersonGenerator.print_large_stick_figure_nosmile(); 
         PersonGenerator.print_money "0"
