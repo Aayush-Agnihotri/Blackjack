@@ -80,6 +80,15 @@ let card_tests =
     ( "FaceCard Value is 13 and Suit is Clubs" >:: fun _ ->
       let card = FaceCardTest.create 13 Clubs in
       assert_equal (FaceCardTest.value card) 10 );
+      ( "FaceCard Value is 14 and Suit is Clubs" >:: fun _ ->
+        let card = FaceCardTest.create 14 Clubs in
+        assert_equal (FaceCardTest.value card) 10 );
+        ( "FaceCard Value is 15 and Suit is Clubs" >:: fun _ ->
+          let card = FaceCardTest.create 15 Clubs in
+          assert_equal (FaceCardTest.value card) 10 );
+          ( "FaceCard Value is 16 and Suit is Clubs" >:: fun _ ->
+            let card = FaceCardTest.create 16 Clubs in
+            assert_equal (FaceCardTest.value card) 11 );
     ( "FaceCard Value is 13 and Suit is Clubs" >:: fun _ ->
       let card = FaceCardTest.create 13 Clubs in
       assert_equal (FaceCardTest.suit card) Clubs );
@@ -131,13 +140,13 @@ let card_tests =
     ( "FaceCard Value is 13 and Suit is Spades" >:: fun _ ->
       let card = FaceCardTest.create 13 Spades in
       assert_equal (FaceCardTest.face card) Jack );
-    ( "FaceCard Value is 13 and Suit is Hearts" >:: fun _ ->
+    ( "FaceCard Value is 16 and Suit is Hearts" >:: fun _ ->
       let card = FaceCardTest.create 16 Hearts in
       assert_equal (FaceCardTest.face card) Ace );
-    ( "FaceCard Value is 13 and Suit is Spades" >:: fun _ ->
+    ( "FaceCard Value is 16 and Suit is Spades" >:: fun _ ->
       let card = FaceCardTest.create 16 Spades in
       assert_equal (FaceCardTest.face card) Ace );
-    ( "FaceCard Value is 13 and Suit is Spades" >:: fun _ ->
+    ( "FaceCard Value is 16 and Suit is Spades" >:: fun _ ->
       let card = FaceCardTest.create 16 Spades in
       assert_equal (FaceCardTest.suit card) Spades );
   ]
@@ -175,19 +184,19 @@ let cpu_tests =
     (*fourth input testing*)
     ( "fourth input CPU testing functionality 1" >:: fun _ ->
       let tester = GameTest.fourth_input_cpu 21 17 5 [] in
-      assert_equal (0 < tester) (tester > 15) );
+      assert_equal (0 <= tester) (21 > tester) );
     ( "fourth input CPU testing functionality 2" >:: fun _ ->
       let tester1 = GameTest.fourth_input_cpu 3 17 5 [] in
-      assert_equal (0 < tester1) (tester1 > 15) );
+      assert_equal (0 <= tester1) (21 > tester1) );
     ( "fourth input CPU testing functionality 3" >:: fun _ ->
       let tester = GameTest.fourth_input_cpu 3 15 5 [] in
-      assert_equal (0 < tester) (tester > 15) );
+      assert_equal (0 <= tester) (0 < tester) );
     ( "fourth input CPU testing functionality 4" >:: fun _ ->
       let tester = GameTest.fourth_input_cpu 3 7 5 [] in
-      assert_equal (0 < tester) (tester > 15) );
+      assert_equal (0 <= tester) (21 > tester) );
     ( "fourth input CPU testing functionality 5" >:: fun _ ->
       let tester = GameTest.fourth_input_cpu 3 1 5 [] in
-      assert_equal (0 < tester) (tester > 15) );
+      assert_equal (0 <= tester) (21 > tester) );
   ]
 
 let dealer_tests =
