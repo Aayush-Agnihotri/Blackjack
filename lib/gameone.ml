@@ -105,7 +105,7 @@ module Fullgamegen = struct
           | false ->
               print_endline "CPU chose to stay";
               cpu_sum
-   let rec decide_3 first second third currenthand =
+   let rec decide_3 first second third (currenthand: int) =
                 let failed = ref 0 in
                 if first = 0 then failed := !failed + 1 else failed := !failed;
                 if second = 0 then failed := !failed + 1 else failed := !failed;
