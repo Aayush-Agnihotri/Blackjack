@@ -32,9 +32,30 @@ module FaceCardTest = Card.FaceCard
 
 let card_tests =
   [
+    ( "Card Value is 2" >:: fun _ ->
+      let card = CardTest.create 2 Clubs in
+      assert_equal (CardTest.value card) 2 );
+    ( "Card Value is 3" >:: fun _ ->
+        let card = CardTest.create 3 Clubs in
+        assert_equal (CardTest.value card) 3 );
+    ( "Card Value is 4" >:: fun _ ->
+          let card = CardTest.create 4 Clubs in
+          assert_equal (CardTest.value card) 4 );
     ( "Card Value is 5" >:: fun _ ->
       let card = CardTest.create 5 Clubs in
       assert_equal (CardTest.value card) 5 );
+    ( "Card Value is 6" >:: fun _ ->
+        let card = CardTest.create 6 Clubs in
+        assert_equal (CardTest.value card) 6 );
+    ( "Card Value is 7" >:: fun _ ->
+          let card = CardTest.create 7 Clubs in
+          assert_equal (CardTest.value card) 7 );
+    ( "Card Value is 8" >:: fun _ ->
+            let card = CardTest.create 8 Clubs in
+            assert_equal (CardTest.value card) 8 );
+    ( "Card Value is 9" >:: fun _ ->
+              let card = CardTest.create 9 Clubs in
+              assert_equal (CardTest.value card) 9 );
     ( "Card Value is 10" >:: fun _ ->
       let card = CardTest.create 10 Clubs in
       assert_equal (CardTest.value card) 10 );
@@ -178,6 +199,20 @@ let dealer_tests =
     ( "dealer decide 3" >:: fun _ ->
       assert_equal (GameTest.dealer_decide 1 1 1 1 1 0) true );
     ( "dealer decide 4" >:: fun _ ->
+        assert_equal (GameTest.dealer_decide 1 1 1 0 0 0) true );
+    ( "dealer decide 5" >:: fun _ ->
+          assert_equal (GameTest.dealer_decide 1 1 0 0 0 0) true );
+    ( "dealer decide 6" >:: fun _ ->
+            assert_equal (GameTest.dealer_decide 1 0 0 0 0 0) true );
+    ( "dealer decide 7" >:: fun _ ->
+              assert_equal (GameTest.dealer_decide 10 10 10 10 10 0) true );
+    ( "dealer decide 8" >:: fun _ ->
+                assert_equal (GameTest.dealer_decide 10 10 10 10 0 0) true );
+    ( "dealer decide 9" >:: fun _ ->
+                  assert_equal (GameTest.dealer_decide 10 10 10 0 0 0) true );
+    ( "dealer decide 10" >:: fun _ ->
+                    assert_equal (GameTest.dealer_decide 13 10 0 0 0 0) true );
+    ( "dealer decide 4" >:: fun _ ->
       assert_equal (GameTest.dealer_decide 10 10 1 1 10 9) true );
     ( "dealer decide 5" >:: fun _ ->
       assert_equal (GameTest.dealer_decide 10 10 1 1 10 11) false );
@@ -191,6 +226,9 @@ let dealer_tests =
       assert_equal (GameTest.dealer_decide 0 0 0 10 0 11) false );
     ( "dealer decide 10" >:: fun _ ->
       assert_equal (GameTest.dealer_decide 0 0 0 0 10 11) false );
+
+
+
     ("decide_3 1" >:: fun _ -> 
       assert_equal (GameTest.decide_3 0 0 0 11) 13);
     ("decide_3 2" >:: fun _ -> 
@@ -268,7 +306,6 @@ let dealer_tests =
       assert_equal (GameTest.decide_2 0 19 11) 19);
     ("decide_2 14" >:: fun _ -> 
       assert_equal (GameTest.decide_2 0 20 11) 20);
-
       ("decide_2 15" >:: fun _ -> 
         assert_equal (GameTest.decide_2 15 0 11) 15);
       ("decide_2 16" >:: fun _ -> 
@@ -281,6 +318,7 @@ let dealer_tests =
         assert_equal (GameTest.decide_2 19 0 11) 19);
       ("decide_2 20" >:: fun _ -> 
         assert_equal (GameTest.decide_2 20 0 11) 20);
+
   ]
 
 let player_tests = []
