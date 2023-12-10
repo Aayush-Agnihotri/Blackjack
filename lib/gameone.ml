@@ -194,8 +194,11 @@ module Fullgamegen = struct
                           print_endline "Dealer chose to stay";
                           dealer_sum
                     
-        let winner name= print_endline(name ^ " is a winner");
-                          PersonGenerator.print_large_stick_figure_smile()
+        let winner name num= print_endline(name ^ " is a winner");
+            PersonGenerator.print_large_stick_figure_smile();
+            PersonGenerator.print_money num
                           
-        let loser name= print_endline(name^ "Lost"); PersonGenerator.print_large_stick_figure_nosmile()
+        let loser name= print_endline(name^ "Lost"); 
+        PersonGenerator.print_large_stick_figure_nosmile(); 
+        PersonGenerator.print_money "0"
 end
