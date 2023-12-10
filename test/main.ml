@@ -1,3 +1,15 @@
+(**
+    Test Plan
+    OUnit automatically tested the type checking and ensured that the parameters and output all followed the .mli files we created. In terms of
+    manual testing, we used blackbox testing in order to get full coverage. That is, we tested all possible paths and ensured that the program worked on all possible inputs. 
+    The card module is tested by testing the value, suit, and face of the card.
+    The gameone module is fully tested by going through all the functions and employing black box testing 
+    in order to get maximum coverage. There were also random tests inputted for the gameone module because the gameone module employs
+    a sense of randomness in order to generate a truly random card, so we wanted to make sure that there weren't any edge cases we were misisng due to that randomness factor. 
+    We also tested the dealer decide function in the gameone module by testing all the possible cases that could occur in the function.
+    We also tested the dealer module by testing all the possible cases that could occur in the function.
+    We tested all of the cpu module in order to make sure that the cpu would be able to make the best decision possible in order to win the game.
+*)
 open OUnit2
 open Blackjack
 open Card
@@ -422,22 +434,22 @@ let dealer_tests =
         assert_equal (GameTest.decide_2 19 0 11) 19);
       ("decide_2 20" >:: fun _ -> 
         assert_equal (GameTest.decide_2 20 0 11) 20);
-        ("decide_2 max less than 15" >:: fun _ -> 
+      ("decide_2 max less than 15" >:: fun _ -> 
           assert_equal (GameTest.decide_2 10 12 13) 15);
-          ("decide_2 max greater than 20" >:: fun _ -> 
-            assert_equal (GameTest.decide_2 21 18 16) 15);
-            ("decide_2 16" >:: fun _ -> 
-              assert_equal (GameTest.decide_2 16 0 14) 16);
-              ("decide_2 17" >:: fun _ -> 
-                assert_equal (GameTest.decide_2 17 13 15) 17);
-                ("decide_2 18" >:: fun _ -> 
-                  assert_equal (GameTest.decide_2 18 14 16) 18);
-                  ("decide_2 19 with second zero" >:: fun _ -> 
-                    assert_equal (GameTest.decide_2 19 0 17) 19);
-                    ("decide_2 20 with first zero" >:: fun _ -> 
-                      assert_equal (GameTest.decide_2 0 20 18) 20);
-                      ("decide_2 15 with both non-zero" >:: fun _ -> 
-                        assert_equal (GameTest.decide_2 10 14 13) 15);
+      ("decide_2 max greater than 20" >:: fun _ -> 
+        assert_equal (GameTest.decide_2 21 18 16) 15);
+      ("decide_2 16" >:: fun _ -> 
+        assert_equal (GameTest.decide_2 16 0 14) 16);
+      ("decide_2 17" >:: fun _ -> 
+        assert_equal (GameTest.decide_2 17 13 15) 17);
+      ("decide_2 18" >:: fun _ -> 
+        assert_equal (GameTest.decide_2 18 14 16) 18);
+      ("decide_2 19 with second zero" >:: fun _ -> 
+        assert_equal (GameTest.decide_2 19 0 17) 19);
+      ("decide_2 20 with first zero" >:: fun _ -> 
+        assert_equal (GameTest.decide_2 0 20 18) 20);
+      ("decide_2 15 with both non-zero" >:: fun _ -> 
+        assert_equal (GameTest.decide_2 10 14 13) 15);
                                                                             
 
   ]
