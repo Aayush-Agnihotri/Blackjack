@@ -152,9 +152,9 @@ let _ = Random.self_init ()
 
 let () =
   print_endline "\n\nWelcome to Blackjack!\n";
-  let frst_cpu = GameGenerator.repl_cpu [] in
+  let frst_cpu = GameGenerator.repl_cpu [] 15 in
   print_endline ("First cpu score " ^ string_of_int frst_cpu);
-  let second_cpu = GameGenerator.aggresive_repl_cpu [] in
+  let second_cpu = GameGenerator.repl_cpu [] 17 in
   print_endline ("Second cpu score " ^ string_of_int second_cpu);
   let third_cpu = GameGenerator.third_input_cpu frst_cpu second_cpu [] in
   print_endline ("Third cpu score " ^ string_of_int third_cpu);
