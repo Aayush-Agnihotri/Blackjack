@@ -75,7 +75,7 @@ let () =
   print_endline "Press H to hit, S to stay, or E to exit";
   let player_val = GameGenerator.repl [] in
   print_endline
-    (" Your final score was" ^ string_of_int player_val
+    (" Your final score was: " ^ string_of_int player_val
    ^ " Enter ok to go to dealer results");
   let in1 = read_line () in
   print_endline in1;

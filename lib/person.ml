@@ -12,14 +12,14 @@ module Person_Gen = struct
   let print_money num =
     print_endline "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$";
     print_endline "* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ *";
-    print_endline ("* $" ^ num ^ "                             " ^ num ^ "$ *");
+    print_endline ("* $" ^ num ^ "                            " ^ num ^ "$ *");
     print_endline ("* $             " ^ "*****" ^ "           $ *");
     print_endline "* $            *******            $ *";
     print_endline "* $           *********           $ *";
     print_endline ("* $               " ^ num ^ "             $ *");
     print_endline "* $           *********           $ *";
     print_endline "* $            *******            $ *";
-    print_endline ("* $             " ^ "******" ^ "             $ *");
+    print_endline ("* $             " ^ "******" ^ "            $ *");
     print_endline ("* $" ^ num ^ "                             " ^ num ^ "$ *");
     print_endline "* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ *";
     print_endline "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"
