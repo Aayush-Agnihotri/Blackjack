@@ -43,11 +43,11 @@ module Fullgamegen = struct
         print_endline "Thanks for playing!";
         List.fold_left ( + ) 0 player_hand
 
-  let rec repl_cpu cpu_hand =
+  let rec repl_cpu cpu_hand threshold =
     print_string "> ";
     let cpu_sum = List.fold_left ( + ) 0 cpu_hand in
 
-    let input = cpu_sum < 15 in
+    let input = cpu_sum < threshold in
     match input with
     | true ->
         print_endline "CPU chose to hit";
@@ -65,37 +65,11 @@ module Fullgamegen = struct
         else (
           print_endline
             ("CPU hand's current value is " ^ string_of_int player_hand_sum);
-          repl_cpu (rand_num :: cpu_hand))
+          repl_cpu (rand_num :: cpu_hand) threshold)
     | false ->
         print_endline "CPU chose to stay";
         cpu_sum
 
-  let rec aggresive_repl_cpu cpu_hand =
-    print_string "> ";
-    let cpu_sum = List.fold_left ( + ) 0 cpu_hand in
-
-    let input = cpu_sum < 17 in
-    match input with
-    | true ->
-        print_endline "CPU chose to hit";
-        let rand_num = 2 + Random.int 8 in
-        let rand_suit = Random.int 4 in
-        generate_card rand_num rand_suit;
-
-        let player_hand_sum = List.fold_left ( + ) 0 cpu_hand + rand_num in
-        if player_hand_sum > 21 then (
-          print_endline "CPU busted!";
-          0)
-        else if player_hand_sum = 21 then (
-          print_endline "CPU won!";
-          21)
-        else (
-          print_endline
-            ("CPU hand's current value is " ^ string_of_int player_hand_sum);
-          aggresive_repl_cpu (rand_num :: cpu_hand))
-    | false ->
-        print_endline "CPU chose to stay";
-        cpu_sum
   let rec decide_2 first second currenthand =
           let failed = ref 0 in
           if first = 0 then failed := !failed + 1 else failed := !failed;
@@ -112,21 +86,21 @@ module Fullgamegen = struct
           let input = cpu_sum < decide_num in
           match input with
           | true ->
-              print_endline "CPU chose to hit";
+              print_endline "CPU 3 chose to hit";
               let rand_num = 2 + Random.int 8 in
               let rand_suit = Random.int 4 in
               generate_card rand_num rand_suit;
         
               let player_hand_sum = List.fold_left ( + ) 0 cpu_hand + rand_num in
               if player_hand_sum > 21 then (
-                print_endline "CPU busted!";
+                print_endline "CPU 3 busted!";
                 0)
               else if player_hand_sum = 21 then (
-                print_endline "CPU won!";
+                print_endline "CPU 3 won!";
                 21)
               else (
                 print_endline
-                  ("CPU hand's current value is " ^ string_of_int player_hand_sum);
+                  ("CPU 3hand's current value is " ^ string_of_int player_hand_sum);
                 third_input_cpu first second (rand_num :: cpu_hand))
           | false ->
               print_endline "CPU chose to stay";
@@ -151,24 +125,24 @@ module Fullgamegen = struct
                 let input = cpu_sum < decide_num in
                 match input with
                 | true ->
-                    print_endline "CPU chose to hit";
+                    print_endline "CPU 4 chose to hit";
                     let rand_num = 2 + Random.int 8 in
                     let rand_suit = Random.int 4 in
                     generate_card rand_num rand_suit;
               
                     let player_hand_sum = List.fold_left ( + ) 0 cpu_hand + rand_num in
                     if player_hand_sum > 21 then (
-                      print_endline "CPU busted!";
+                      print_endline "CPU 4 busted!";
                       0)
                     else if player_hand_sum = 21 then (
-                      print_endline "CPU won!";
+                      print_endline "CPU 4 won!";
                       21)
                     else (
                       print_endline
-                        ("CPU hand's current value is " ^ string_of_int player_hand_sum);
+                        ("CPU 4 hand's current value is " ^ string_of_int player_hand_sum);
                       fourth_input_cpu first second third (rand_num :: cpu_hand))
                 | false ->
-                    print_endline "CPU chose to stay";
+                    print_endline "CPU 4 chose to stay";
                     cpu_sum
       let rec dealer_decide first second third fourth player dealer_val : bool =
                       let failed = ref 0 in
@@ -220,8 +194,11 @@ module Fullgamegen = struct
                           print_endline "Dealer chose to stay";
                           dealer_sum
                     
-        let winner name= print_endline(name ^ " is a winner");
-                          PersonGenerator.print_large_stick_figure_smile()
+        let winner name num= print_endline(name ^ " is a winner");
+            PersonGenerator.print_large_stick_figure_smile();
+            PersonGenerator.print_money num
                           
-        let loser name= print_endline(name^ "Lost"); PersonGenerator.print_large_stick_figure_nosmile()
+        let loser name= print_endline(name^ "Lost"); 
+        PersonGenerator.print_large_stick_figure_nosmile(); 
+        PersonGenerator.print_money "0"
 end
