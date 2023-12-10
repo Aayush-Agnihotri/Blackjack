@@ -19,7 +19,6 @@ let () =
     (* | _ -> failwith "error" *)
   in
   let paly_bet1 = weightp in
-  print_int cpu_bet;
 
   print_endline
     "The game is going to start now. You will be playing with 4 randomly \
