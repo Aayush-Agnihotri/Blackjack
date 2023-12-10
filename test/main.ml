@@ -393,7 +393,34 @@ let dealer_tests =
                 ("decide_3 test 6" >:: fun _ -> 
                   assert_equal (GameTest.decide_3 14 0 0 9) 15);
                   ("decide_3 test 7" >:: fun _ -> 
-                    assert_equal (GameTest.decide_3 20 20 20 18) 20);                                           
+                    assert_equal (GameTest.decide_3 20 20 20 18) 20);
+                    ("decide_3 test 8" >:: fun _ -> 
+                      assert_equal (GameTest.decide_3 3 3 3 10) 15);
+                    ("decide_3 test 9" >:: fun _ -> 
+                      assert_equal (GameTest.decide_3 7 7 7 14) 15);
+                    ("decide_3 test 10" >:: fun _ -> 
+                      assert_equal (GameTest.decide_3 12 12 12 16) 15);
+                    ("decide_3 test 11" >:: fun _ -> 
+                      assert_equal (GameTest.decide_3 0 15 0 11) 15);
+                    ("decide_3 test 12" >:: fun _ -> 
+                      assert_equal (GameTest.decide_3 5 10 15 13) 15);
+                    ("decide_3 test 13" >:: fun _ -> 
+                      assert_equal (GameTest.decide_3 8 16 24 20) 15);
+                    ("decide_3 test 14" >:: fun _ -> 
+                      assert_equal (GameTest.decide_3 2 4 6 10) 15);
+                    ("decide_3 test 15" >:: fun _ -> 
+                      assert_equal (GameTest.decide_3 18 6 9 15) 18);
+                    ("decide_3 test 16" >:: fun _ -> 
+                      assert_equal (GameTest.decide_3 0 0 0 0) 13);
+                    ("decide_3 test 17" >:: fun _ -> 
+                      assert_equal (GameTest.decide_3 25 25 25 25) 15);
+                    ("decide_3 test 18" >:: fun _ -> 
+                      assert_equal (GameTest.decide_3 1 2 3 5) 15);
+                    ("decide_3 test 19" >:: fun _ -> 
+                      assert_equal (GameTest.decide_3 30 30 30 30) 15);
+                    ("decide_3 test 20" >:: fun _ -> 
+                      assert_equal (GameTest.decide_3 7 14 21 28) 15);
+                                                               
     ("decide_2 1" >:: fun _ -> 
       assert_equal (GameTest.decide_2 1 1 1) 15);
     ("decide_2 2" >:: fun _ -> 
@@ -450,6 +477,63 @@ let dealer_tests =
         assert_equal (GameTest.decide_2 0 20 18) 20);
       ("decide_2 15 with both non-zero" >:: fun _ -> 
         assert_equal (GameTest.decide_2 10 14 13) 15);
+        ("decide_2 test 21" >:: fun _ -> 
+          assert_equal (GameTest.decide_2 5 5 5) 15);
+        ("decide_2 test 22" >:: fun _ -> 
+          assert_equal (GameTest.decide_2 25 25 15) 15);
+        ("decide_2 test 23" >:: fun _ -> 
+          assert_equal (GameTest.decide_2 25 0 15) 15);
+        ("decide_2 test 24" >:: fun _ -> 
+          assert_equal (GameTest.decide_2 0 25 15) 15);
+        ("decide_2 test 25" >:: fun _ -> 
+          assert_equal (GameTest.decide_2 0 18 15) 18);
+        ("decide_2 test 26" >:: fun _ -> 
+          assert_equal (GameTest.decide_2 18 0 15) 18);
+        ("decide_2 test 27" >:: fun _ -> 
+          assert_equal (GameTest.decide_2 5 0 15) 15);
+        ("decide_2 test 28" >:: fun _ -> 
+          assert_equal (GameTest.decide_2 0 5 15) 15);
+        ("decide_2 test 29" >:: fun _ -> 
+          assert_equal (GameTest.decide_2 0 15 15) 15);
+        ("decide_2 test 30" >:: fun _ -> 
+          assert_equal (GameTest.decide_2 0 16 15) 16);
+        ("decide_2 test 31" >:: fun _ -> 
+          assert_equal (GameTest.decide_2 0 17 15) 17);
+        ("decide_2 test 32" >:: fun _ -> 
+          assert_equal (GameTest.decide_2 0 18 15) 18);
+        ("decide_2 test 33" >:: fun _ -> 
+          assert_equal (GameTest.decide_2 0 19 15) 19);
+        ("decide_2 test 34" >:: fun _ -> 
+          assert_equal (GameTest.decide_2 0 20 15) 20);
+        ("decide_2 test 35" >:: fun _ -> 
+          assert_equal (GameTest.decide_2 15 0 15) 15);
+        ("decide_2 test 36" >:: fun _ -> 
+          assert_equal (GameTest.decide_2 16 0 15) 16);
+        ("decide_2 test 37" >:: fun _ -> 
+          assert_equal (GameTest.decide_2 17 0 15) 17);
+        ("decide_2 test 38" >:: fun _ -> 
+          assert_equal (GameTest.decide_2 18 0 15) 18);
+        ("decide_2 test 39" >:: fun _ -> 
+          assert_equal (GameTest.decide_2 19 0 15) 19);
+        ("decide_2 test 40" >:: fun _ -> 
+          assert_equal (GameTest.decide_2 20 0 15) 20);
+        ("decide_2 test 41" >:: fun _ -> 
+          assert_equal (GameTest.decide_2 10 12 13) 15);
+        ("decide_2 test 42" >:: fun _ -> 
+          assert_equal (GameTest.decide_2 21 18 16) 15);
+        ("decide_2 test 43" >:: fun _ -> 
+          assert_equal (GameTest.decide_2 16 0 14) 16);
+        ("decide_2 test 44" >:: fun _ -> 
+          assert_equal (GameTest.decide_2 17 13 15) 17);
+        ("decide_2 test 45" >:: fun _ -> 
+          assert_equal (GameTest.decide_2 18 14 16) 18);
+        ("decide_2 test 46" >:: fun _ -> 
+          assert_equal (GameTest.decide_2 19 0 17) 19);
+        ("decide_2 test 47" >:: fun _ -> 
+          assert_equal (GameTest.decide_2 0 20 18) 20);
+        ("decide_2 test 48" >:: fun _ -> 
+          assert_equal (GameTest.decide_2 10 14 13) 15);
+        
                                                                             
 
   ]
